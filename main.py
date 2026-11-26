@@ -95,8 +95,10 @@ def write_image(data: bytes, out_dir: Path) -> Path:
 
 
 def report(target: Path, data: bytes) -> str:
+    """One-line summary of a successful write, with size and digest."""
+    width, height = inspect_png(data)
     return (
-        f"wrote {target}: {len(data)} bytes, "
+        f"wrote {target}: {width}x{height}, {len(data)} bytes, "
         f"sha256={digest_of(data)}"
     )
 
